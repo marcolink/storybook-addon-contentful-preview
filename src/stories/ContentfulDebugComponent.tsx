@@ -10,9 +10,9 @@ type AnyEntry =
 /*
   * This component is used to debug the content of an entry.
   * The ContentfulPreview decorator assigns the following parameters:
-  * - entryId: The id of the entry to be debugged
+  * - entryId: The id of the entry (required for inspector mode)
   * - entry: The entry object
-  * - '[fieldId]': value
+  * - <fieldId>: value
  */
 export function ContentfulDebugComponent({entryId, ...fields}: AnyEntry) {
   // For this example, we don't need the entry as full object

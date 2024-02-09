@@ -4,6 +4,7 @@ import {createClient, type CreateClientParams} from "contentful";
 
 type UseContentfulParams = {
   isPreview: boolean;
+  locale: string;
 } & CreateClientParams
 
 export function useContentful(entryId: string, clientParams: Partial<UseContentfulParams>) {
@@ -17,7 +18,8 @@ export function useContentful(entryId: string, clientParams: Partial<UseContentf
     space,
     isPreview,
     accessToken,
-    environment = 'master'
+    environment = 'master',
+    locale = 'en-US'
   } = clientParams;
 
   useEffect(() => {
@@ -30,12 +32,13 @@ export function useContentful(entryId: string, clientParams: Partial<UseContentf
         environment,
         space,
         accessToken,
-        host: clientParams?.isPreview
+        host: isPreview
           ? 'preview.contentful.com'
           : 'api.contentful.com',
       })
       const data = await contentfulClient.getEntry(entryId, {
         include: 10,
+        locale: locale
       });
       setContent(data);
       setIsLoading(false);

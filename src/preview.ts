@@ -21,11 +21,13 @@ const preview: ProjectAnnotations<Renderer> = {
   decorators: [withContentfulPreview],
   globals: {
     [PARAM_KEY]: {
-      space: "spaceId",
-      accessToken: "accessToken",
+      // Example of setting a default value for a global parameter
+      // space: "spaceId",
+      // accessToken: "accessToken",
       environment: "master",
-      livePreview: true,
-      debugMode: false,
+      locale: "en-US",
+      // livePreview: true,
+      // debugMode: false,
     },
   },
 };
