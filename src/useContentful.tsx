@@ -1,4 +1,4 @@
-import {useEffect, useState} from "react";
+import {useEffect, useState} from "@storybook/preview-api";
 import {assertValue} from "./utils";
 import {createClient, type CreateClientParams} from "contentful";
 
@@ -7,10 +7,11 @@ type UseContentfulParams = {
 } & CreateClientParams
 
 export function useContentful(entryId: string, clientParams: Partial<UseContentfulParams>) {
-  const [error, setError] = useState<any>();
   const [content, setContent] = useState<{
     fields: Record<string, any>
-  }>();
+  }>(null);
+
+  const [isLoading, setIsLoading] = useState(true);
 
   const {
     space,
@@ -21,30 +22,26 @@ export function useContentful(entryId: string, clientParams: Partial<UseContentf
 
   useEffect(() => {
     const fetchData = async () => {
-      try {
-        assertValue(entryId, 'No entryId provided');
-        assertValue(space, 'No spaceId provided');
-        assertValue(accessToken, 'No accessToken provided');
-        setError(undefined);
-        const contentfulClient = createClient({
-          environment,
-          space,
-          accessToken,
-          host: clientParams?.isPreview
-            ? 'preview.contentful.com'
-            : 'api.contentful.com',
-        })
-        const data = await contentfulClient.getEntry(entryId, {
-          include: 10,
-        });
-        setContent(data);
-      } catch (error) {
-        console.error('Error fetching content from Contentful:', error);
-        setError(error);
-      }
+      assertValue(entryId, 'No entryId provided');
+      assertValue(space, 'No spaceId provided');
+      assertValue(accessToken, 'No accessToken provided');
+      setIsLoading(true);
+      const contentfulClient = createClient({
+        environment,
+        space,
+        accessToken,
+        host: clientParams?.isPreview
+          ? 'preview.contentful.com'
+          : 'api.contentful.com',
+      })
+      const data = await contentfulClient.getEntry(entryId, {
+        include: 10,
+      });
+      setContent(data);
+      setIsLoading(false);
     };
     fetchData();
   }, [entryId, environment, space, accessToken, isPreview]);
 
-  return {content, error};
+  return {content, isLoading};
 }

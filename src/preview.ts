@@ -18,10 +18,15 @@ import {withContentfulPreview} from "./withContentfulPreview";
  */
 
 const preview: ProjectAnnotations<Renderer> = {
-  // decorators: [withGlobals, withRoundTrip],
   decorators: [withContentfulPreview],
   globals: {
-    [PARAM_KEY]: false,
+    [PARAM_KEY]: {
+      space: "spaceId",
+      accessToken: "accessToken",
+      environment: "master",
+      livePreview: true,
+      debugMode: false,
+    },
   },
 };
 
