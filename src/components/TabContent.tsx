@@ -19,6 +19,8 @@ interface TabContentProps {
   code: string;
 }
 
+// rendered from the top bar tab
+
 export const TabContent: React.FC<TabContentProps> = ({ code }) => (
   <TabWrapper>
     <TabInner>
