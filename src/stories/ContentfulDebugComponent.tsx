@@ -29,11 +29,18 @@ export function ContentfulDebugComponent({entryId, depth = 0, breadcrumbs = [], 
     if (Array.isArray(value)) {
       return value.map((v, i) => {
         if (typeof v === 'object' && v.sys) {
-          return <ContentfulDebugComponent
-            key={v.sys.id} depth={depth + 1}
-            entryId={v.sys.id} {...v.fields}
-            breadcrumbs={[...breadcrumbs, key]}
-          />
+          return (
+            <>
+              <h2>{key}</h2>
+              <ContentfulDebugComponent
+                key={v.sys.id}
+                depth={depth + 1}
+                entryId={v.sys.id}
+                breadcrumbs={[...breadcrumbs, key]}
+                {...v.fields}
+              />
+            </>
+          )
         }
       })
     }
@@ -48,8 +55,8 @@ export function ContentfulDebugComponent({entryId, depth = 0, breadcrumbs = [], 
     }
 
     return (
-      <div key={key}  style={{margin: 10, paddingLeft: depth * 20}}>
-        <h5>{[...breadcrumbs, key].join(' > ')}</h5>
+      <div key={key} style={{margin: 10, paddingLeft: depth * 20}}>
+        <h4 style={{marginBottom: 0, fontFamily: 'monospace'}}>{[...breadcrumbs, key].join(' > ')}</h4>
         <pre style={{padding: 10, backgroundColor: '#eee'}} {...inspectorProps({fieldId: key})}>
           {JSON.stringify(value, null, 2)}
         </pre>

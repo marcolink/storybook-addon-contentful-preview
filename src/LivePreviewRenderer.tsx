@@ -38,8 +38,6 @@ export function LivePreviewRenderer(
       entryId: content.sys.id
     }
 
-    console.log({context})
-
     return <>{StoryFn(context)}</>;
   }
 
