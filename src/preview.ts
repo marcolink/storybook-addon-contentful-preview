@@ -26,8 +26,9 @@ const preview: ProjectAnnotations<Renderer> = {
       // accessToken: "accessToken",
       environment: "master",
       locale: "en-US",
-      // livePreview: true,
-      // debugMode: false,
+      livePreview: true,
+      isPreview: true,
+      debugMode: false,
     },
   },
 };
