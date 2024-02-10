@@ -8,6 +8,7 @@ const meta = {
   parameters: {
     contentfulPreview: {
       entryId: '5v9JHfguPgi4whd7zCJbkP',
+      livePreview: false,
     },
   }
 } satisfies Meta<typeof ContentfulDebugComponent>;

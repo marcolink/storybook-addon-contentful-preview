@@ -5,5 +5,5 @@ export function assertValue<T>(value: T, errorMessage = 'Value is undefined or n
 }
 
 export function mergeParam<T>(input: Array<T | undefined | null>, defaultValue?: T) {
-  return input.find((v) => v !== undefined || null) || defaultValue || undefined;
+  return input.find((v) => v !== undefined || null) ?? defaultValue ?? undefined;
 }

@@ -1,68 +1,71 @@
-import {PartialStoryFn as StoryFunction, Renderer, StoryContext} from "@storybook/types";
 import {PARAM_KEY} from "./constants";
 import {useContentful} from "./useContentful";
 import {mergeParam} from "./utils";
 import React from "react";
 import {LivePreviewRenderer} from "./LivePreviewRenderer";
+import {makeDecorator} from "@storybook/preview-api";
 
-export const withContentfulPreview = (
-  StoryFn: StoryFunction<Renderer>,
-  context: StoryContext<Renderer>
-) => {
-  const searchParams = new URLSearchParams(window.location.search);
-  const globalContentfulPreview = context.parameters.globals[PARAM_KEY];
-  const contentfulPreview = context.parameters[PARAM_KEY];
+export const withContentfulPreview = makeDecorator({
+  name: 'withContentfulPreview',
+  parameterName: PARAM_KEY,
+  skipIfNoParametersOrOptions: false,
+  wrapper: (
+    StoryFn,
+    context,
+    {parameters}
+  ) => {
+    const searchParams = new URLSearchParams(window.location.search);
+    const globalContentfulPreview = context.parameters.globals[PARAM_KEY];
 
-  const space = mergeParam([contentfulPreview.space, globalContentfulPreview.space])
-  const accessToken = mergeParam([contentfulPreview.accessToken, globalContentfulPreview.accessToken])
-  const entryId = searchParams.get('entryId') || contentfulPreview.entryId
-  const locale = mergeParam([searchParams.get('locale'), contentfulPreview.locale, globalContentfulPreview.locale], 'en-US')
-  const environment = mergeParam([searchParams.get('environment'), contentfulPreview.environment, globalContentfulPreview.environment], 'master')
+    const space = mergeParam([parameters.space, globalContentfulPreview.space])
+    const accessToken = mergeParam([parameters.accessToken, globalContentfulPreview.accessToken])
+    const locale = mergeParam([searchParams.get('locale'), parameters.locale, globalContentfulPreview.locale], 'en-US')
+    const environment = mergeParam([searchParams.get('environment'), parameters.environment, globalContentfulPreview.environment], 'master')
+    const livePreview = mergeParam([parameters.livePreview, globalContentfulPreview.livePreview], false)
+    const isPreview = mergeParam([parameters.isPreview, globalContentfulPreview.isPreview], false)
+    const debugMode = mergeParam([parameters.debugMode, globalContentfulPreview.debugMode], false)
+    const entryId = searchParams.get('entryId') || parameters.entryId
 
-  // Neither merge Params nor this is working
-  const livePreview = contentfulPreview.livePreview || globalContentfulPreview.livePreview
-  const isPreview = contentfulPreview.isPreview || globalContentfulPreview.isPreview
-  const debugMode = contentfulPreview.debugMode || globalContentfulPreview.debugMode
-
-  const params = {
-    space,
-    accessToken,
-    environment,
-    isPreview,
-    locale
-  }
-
-  console.log({context, globalContentfulPreview, contentfulPreview, params, entryId, livePreview, debugMode, isPreview})
-  const {content, isLoading} = useContentful(entryId, params);
-
-  if (content) {
-    context.args = {
-      ...context.args,
-      ...content.fields,
-      // TODO: maybe rename it as 'entry' as field name is likely to be used
-      entry: content,
+    const params = {
+      space,
+      accessToken,
+      environment,
+      isPreview,
+      locale
     }
-  }
-  if (isLoading) {
-    return null
-  }
-  console.log('Live preview enabled: ', livePreview )
 
-  if (livePreview) {
+    console.log({parameters, context, globalContentfulPreview, params, entryId, livePreview, debugMode, isPreview})
+    const {content, isLoading} = useContentful(entryId, params);
+
+    if (content) {
+      context.args = {
+        ...context.args,
+        ...content.fields,
+        // TODO: maybe rename it as 'entry' as field name is likely to be used
+        entry: content,
+      }
+    }
+    if (isLoading) {
+      return null
+    }
+    console.log('Live preview enabled: ', livePreview)
+
+    if (livePreview) {
+      return (
+        <LivePreviewRenderer
+          StoryFn={StoryFn}
+          context={context}
+          initialContent={content}
+          locale={locale}
+          debugMode={debugMode}
+        />
+      )
+    }
+
     return (
-      <LivePreviewRenderer
-        StoryFn={StoryFn}
-        context={context}
-        initialContent={content}
-        locale={locale}
-        debugMode={debugMode}
-      />
-    )
+      <>
+        {StoryFn(context)}
+      </>
+    );
   }
-
-  return (
-    <>
-      {StoryFn(context)}
-    </>
-  );
-}
+})
