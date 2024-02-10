@@ -27,7 +27,7 @@ const preview: ProjectAnnotations<Renderer> = {
       environment: "master",
       locale: "en-US",
       livePreview: true,
-      isPreview: true,
+      host: 'cdn.contentful.com',
       debugMode: false,
     },
   },

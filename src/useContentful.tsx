@@ -3,7 +3,6 @@ import {assertValue} from "./utils";
 import {createClient, type CreateClientParams} from "contentful";
 
 type UseContentfulParams = {
-  isPreview: boolean;
   locale: string;
 } & CreateClientParams
 
@@ -16,7 +15,7 @@ export function useContentful(entryId: string, clientParams: Partial<UseContentf
 
   const {
     space,
-    isPreview,
+    host,
     accessToken,
     environment = 'master',
     locale = 'en-US'
@@ -32,9 +31,7 @@ export function useContentful(entryId: string, clientParams: Partial<UseContentf
         environment,
         space,
         accessToken,
-        host: isPreview
-          ? 'preview.contentful.com'
-          : 'api.contentful.com',
+        host
       })
       const data = await contentfulClient.getEntry(entryId, {
         include: 10,
@@ -44,7 +41,7 @@ export function useContentful(entryId: string, clientParams: Partial<UseContentf
       setIsLoading(false);
     };
     fetchData();
-  }, [entryId, environment, space, accessToken, isPreview]);
+  }, [entryId, environment, space, accessToken, host]);
 
   return {content, isLoading};
 }

@@ -1,9 +1,20 @@
-import {PARAM_KEY} from "./constants";
+import {EVENTS, PARAM_KEY} from "./constants";
 import {useContentful} from "./useContentful";
 import {mergeParam} from "./utils";
 import React from "react";
 import {LivePreviewRenderer} from "./LivePreviewRenderer";
-import {makeDecorator} from "@storybook/preview-api";
+import {makeDecorator, useChannel, useEffect} from "@storybook/preview-api";
+
+type ContentfulPreviewParameters = {
+  space: string,
+  accessToken: string,
+  environment: string,
+  locale: string,
+  livePreview: boolean,
+  host: string,
+  debugMode: boolean,
+  entryId: string,
+}
 
 export const withContentfulPreview = makeDecorator({
   name: 'withContentfulPreview',
@@ -12,7 +23,9 @@ export const withContentfulPreview = makeDecorator({
   wrapper: (
     StoryFn,
     context,
-    {parameters}
+    {parameters}: {
+      parameters: Partial<ContentfulPreviewParameters>
+    }
   ) => {
     const searchParams = new URLSearchParams(window.location.search);
     const globalContentfulPreview = context.parameters.globals[PARAM_KEY];
@@ -22,7 +35,7 @@ export const withContentfulPreview = makeDecorator({
     const locale = mergeParam([searchParams.get('locale'), parameters.locale, globalContentfulPreview.locale], 'en-US')
     const environment = mergeParam([searchParams.get('environment'), parameters.environment, globalContentfulPreview.environment], 'master')
     const livePreview = mergeParam([parameters.livePreview, globalContentfulPreview.livePreview], false)
-    const isPreview = mergeParam([parameters.isPreview, globalContentfulPreview.isPreview], false)
+    const host = mergeParam([parameters.host, globalContentfulPreview.host], 'api.contentful.com')
     const debugMode = mergeParam([parameters.debugMode, globalContentfulPreview.debugMode], false)
     const entryId = searchParams.get('entryId') || parameters.entryId
 
@@ -30,12 +43,25 @@ export const withContentfulPreview = makeDecorator({
       space,
       accessToken,
       environment,
-      isPreview,
+      host,
       locale
     }
 
-    console.log({parameters, context, globalContentfulPreview, params, entryId, livePreview, debugMode, isPreview})
+    console.log({parameters, context, globalContentfulPreview, params, entryId, livePreview, debugMode, host})
     const {content, isLoading} = useContentful(entryId, params);
+
+    const emit = useChannel({
+      [EVENTS.RESULT]: (result) => {
+        console.log('Received result: ', result)
+      }
+    });
+
+    useEffect(() => {
+      emit(EVENTS.RESULT, {
+        content,
+        isLoading,
+      })
+    }, [content, isLoading]);
 
     if (content) {
       context.args = {

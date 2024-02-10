@@ -1,36 +1,33 @@
 import React from "react";
-import { useAddonState, useChannel } from "@storybook/manager-api";
-import { AddonPanel } from "@storybook/components";
-import { ADDON_ID, EVENTS } from "./constants";
-import { PanelContent } from "./components/PanelContent";
+import {AddonPanel, Code, createCopyToClipboardFunction, IconButton} from "@storybook/components";
+import {useLivePreviewUrl} from "./components/useLivePreviewUrl";
 
 interface PanelProps {
   active: boolean;
 }
 
-export const Panel: React.FC<PanelProps> = (props) => {
-  // https://storybook.js.org/docs/react/addons/addons-api#useaddonstate
-  const [results, setState] = useAddonState(ADDON_ID, {
-    danger: [],
-    warning: [],
-  });
+export function Panel(props: PanelProps) {
+  const livePreviewUrl = useLivePreviewUrl();
 
-  // https://storybook.js.org/docs/react/addons/addons-api#usechannel
-  const emit = useChannel({
-    [EVENTS.RESULT]: (newResults) => setState(newResults),
-  });
+  const copyFunction = createCopyToClipboardFunction();
 
   return (
     <AddonPanel {...props}>
-      <PanelContent
-        results={results}
-        fetchData={() => {
-          emit(EVENTS.REQUEST);
-        }}
-        clearData={() => {
-          emit(EVENTS.CLEAR);
-        }}
-      />
+      <div style={{padding: 20}}>
+        <h3>Welcome</h3>
+        <p>
+          The Contentful Live Preview Addon allows you to use your storybook instance as contentful preview url.
+        </p>
+        <h3>Setup</h3>
+        <p>
+          Set this url as your preview url in your contentful space settings for the content type that represents data
+          for this component..
+        </p>
+        <Code contentEditable={false}>
+          {livePreviewUrl}
+        </Code>
+        <IconButton onClick={() => copyFunction(livePreviewUrl)}>Copy</IconButton>
+      </div>
     </AddonPanel>
   );
 };

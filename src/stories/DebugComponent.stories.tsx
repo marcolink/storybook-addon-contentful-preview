@@ -8,7 +8,7 @@ const meta = {
   parameters: {
     contentfulPreview: {
       entryId: '5v9JHfguPgi4whd7zCJbkP',
-      livePreview: false,
+      livePreview: true,
     },
   }
 } satisfies Meta<typeof ContentfulDebugComponent>;
@@ -16,5 +16,12 @@ const meta = {
 type Story = StoryObj<typeof ContentfulDebugComponent>;
 
 export const Primary: Story = {}
+export const NoLivePreview: Story = {
+  parameters: {
+    contentfulPreview: {
+      livePreview: false,
+    }
+  }
+}
 
 export default meta;

@@ -16,9 +16,8 @@ const preview: Preview = {
       contentfulPreview: {
         space: "621006g5gybw",
         accessToken: "UaqOlFCYE6lFHd_Cmvp2xD__UBceBcKA4j8KkFoCdac",
-        isPreview: true,
-        livePreview: true,
-        debugMode: true,
+        host: 'preview.contentful.com',
+        // debugMode: true,
       }
     }
   },
