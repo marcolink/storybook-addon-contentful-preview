@@ -19,9 +19,9 @@ type ContentfulPreviewParameters = {
 export const withContentfulPreview = makeDecorator({
   name: 'withContentfulPreview',
   parameterName: PARAM_KEY,
-  skipIfNoParametersOrOptions: false,
+  skipIfNoParametersOrOptions: true,
   wrapper: (
-    StoryFn,
+    storyFn,
     context,
     {parameters}: {
       parameters: Partial<ContentfulPreviewParameters>
@@ -47,7 +47,7 @@ export const withContentfulPreview = makeDecorator({
       locale
     }
 
-    console.log({parameters, context, globalContentfulPreview, params, entryId, livePreview, debugMode, host})
+    // console.log({parameters, context, globalContentfulPreview, params, entryId, livePreview, debugMode, host})
     const {content, isLoading} = useContentful(entryId, params);
 
     const emit = useChannel({
@@ -79,7 +79,7 @@ export const withContentfulPreview = makeDecorator({
     if (livePreview) {
       return (
         <LivePreviewRenderer
-          StoryFn={StoryFn}
+          StoryFn={storyFn}
           context={context}
           initialContent={content}
           locale={locale}
@@ -90,7 +90,7 @@ export const withContentfulPreview = makeDecorator({
 
     return (
       <>
-        {StoryFn(context)}
+        {storyFn(context)}
       </>
     );
   }

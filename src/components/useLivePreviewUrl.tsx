@@ -1,5 +1,4 @@
 export const useLivePreviewUrl = () => {
-
   const currentParams = new URLSearchParams(window.location.search);
   const pathParam = currentParams.get('path');
 
