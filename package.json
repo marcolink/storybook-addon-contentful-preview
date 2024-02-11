@@ -107,7 +107,7 @@
     "icon": "https://user-images.githubusercontent.com/321738/63501763-88dbf600-c4cc-11e9-96cd-94adadc2fd72.png"
   },
   "dependencies": {
-    "@contentful/live-preview": "^3.0.0-alpha.7",
-    "contentful": "^10.6.21"
+    "@contentful/live-preview": "2.15.2",
+    "contentful": "10.5.3"
   }
 }
