@@ -1,7 +1,7 @@
 import type {Meta} from '@storybook/react';
 import {StoryObj} from "@storybook/react";
 import {ContentfulDebugComponent} from "./ContentfulDebugComponent";
-import {withEntryFields} from "../withEntryFields";
+import {withArgsMutator} from "../withArgsMutator";
 
 const meta = {
   title: 'ContentfulPreview/Debug',
@@ -9,6 +9,25 @@ const meta = {
 } satisfies Meta<typeof ContentfulDebugComponent>;
 
 type Story = StoryObj<typeof ContentfulDebugComponent>;
+
+/*
+ * render static data (if parameter `contentfulPreview` is not set),
+ */
+export const Static: Story = {
+  decorators: [withArgsMutator],
+  args: {
+    contentful_entry: {
+      sys: {
+        id: '5M3xHa49MTRrkhiaascL3Q',
+        type: 'Entry',
+      },
+      fields: {
+        title: 'Title',
+        description: 'Description',
+      }
+    }
+  }
+}
 
 /*
  * Set live preview to get live updates in contentful's preview mode
@@ -34,24 +53,23 @@ export const NoLivePreview: Story = {
   }
 }
 
-/*
- * render static data (if parameter `contentfulPreview` is not set), the decorator is ignored
- */
-export const Static: Story = {
-  args: {
-    entryId: '5M3xHa49MTRrkhiaascL3Q',
-    entry: {
-      sys: {
-        id: '5M3xHa49MTRrkhiaascL3Q',
-        type: 'Entry',
-      },
-      fields: {
-        title: 'Title',
-        description: 'Description',
-      }
-    }
-  },
-  decorators: [withEntryFields],
-}
+
+//
+// export const StaticLivePreview: Story = {
+//   decorators: [withArgsMutator, withLivePreview],
+//   args: {
+//     entryId: '5M3xHa49MTRrkhiaascL3Q',
+//     contentful_entry: {
+//       sys: {
+//         id: '5M3xHa49MTRrkhiaascL3Q',
+//         type: 'Entry',
+//       },
+//       fields: {
+//         title: 'Title',
+//         description: 'Description',
+//       }
+//     }
+//   }
+// }
 
 export default meta;

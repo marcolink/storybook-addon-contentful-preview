@@ -1,49 +1,38 @@
 import React from "react";
 import {useContentfulInspectorMode} from "@contentful/live-preview/react";
-
-type BaseEntry = {
-  sys: {
-    id: string,
-    type: string,
-  },
-  fields: Record<string, any>
-}
+import {BaseEntry} from "../types";
 
 type AnyEntry =
   {
-    entryId: string,
     depth?: number,
     breadcrumbs?: string[],
-    entry: BaseEntry
+    contentful_entry: BaseEntry
   }
   & Record<string, any>;
 
 /*
   * This component is used to debug the content of an entry.
   * The ContentfulPreview decorator assigns the following parameters:
-  * - entryId: The id of the entry (required for inspector mode)
-  * - entry: The entry object
+  * - contentful_entry: The entry object
   * - <fieldId>: value
  */
 export function ContentfulDebugComponent(
   {
-    entryId,
-    entry,
+    contentful_entry,
     depth = 0,
     breadcrumbs = [],
     ...fields
   }: AnyEntry) {
 
+  const inspectorProps = useContentfulInspectorMode({entryId: contentful_entry.sys.id});
 
-  const inspectorProps = useContentfulInspectorMode({entryId});
-
-  if(entry.sys.type === 'Asset') {
-    const assetId = entry.sys.id;
+  if(contentful_entry.sys.type === 'Asset') {
+    const assetId = contentful_entry.sys.id;
     return (
       <div key={assetId} style={{margin: 10, paddingLeft: depth * 20}}>
-      <h4 style={{marginBottom: 0, fontFamily: 'monospace'}}>{[...breadcrumbs, entry.fields.title].join(' > ')}</h4>
+      <h4 style={{marginBottom: 0, fontFamily: 'monospace'}}>{[...breadcrumbs, contentful_entry.fields.title].join(' > ')}</h4>
       <pre style={{padding: 10, backgroundColor: '#eee'}} {...inspectorProps({fieldId: assetId, assetId})}>
-          {JSON.stringify(entry.fields, null, 2)}
+          {JSON.stringify(contentful_entry.fields, null, 2)}
         </pre>
     </div>
     )
@@ -64,8 +53,7 @@ export function ContentfulDebugComponent(
               <ContentfulDebugComponent
                 key={v.sys.id}
                 depth={depth + 1}
-                entry={v}
-                entryId={v.sys.id}
+                contentful_entry={v}
                 breadcrumbs={[...breadcrumbs, key]}
                 {...v.fields}
               />
@@ -79,7 +67,7 @@ export function ContentfulDebugComponent(
       return <ContentfulDebugComponent
         key={key} entryId={value.sys.id}
         depth={depth + 1}
-        entry={value}
+        contentful_entry={value}
         breadcrumbs={[...breadcrumbs, key]}
         {...value.fields}
       />
@@ -89,7 +77,7 @@ export function ContentfulDebugComponent(
       console.log('ASSET')
       return <ContentfulDebugComponent
         key={key} entryId={value.sys.id}
-        entry={value}
+        contentful_entry={value}
         depth={depth + 1}
         breadcrumbs={[...breadcrumbs, key]}
         {...value.fields}

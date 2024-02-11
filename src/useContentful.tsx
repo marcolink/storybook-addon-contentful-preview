@@ -7,7 +7,7 @@ type UseContentfulParams = {
 } & CreateClientParams
 
 export function useContentful(entryId: string, clientParams: Partial<UseContentfulParams>) {
-  const [content, setContent] = useState<{
+  const [entry, setEntry] = useState<{
     fields: Record<string, any>
   }>(null);
 
@@ -37,11 +37,11 @@ export function useContentful(entryId: string, clientParams: Partial<UseContentf
         include: 10,
         locale: locale
       });
-      setContent(data);
+      setEntry(data);
       setIsLoading(false);
     };
     fetchData();
   }, [entryId, environment, space, accessToken, host]);
 
-  return {content, isLoading};
+  return {entry, isLoading};
 }

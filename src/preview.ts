@@ -10,7 +10,9 @@
  */
 import type {ProjectAnnotations, Renderer} from "@storybook/types";
 import {PARAM_KEY} from "./constants";
-import {withContentfulPreview} from "./withContentfulPreview";
+import {withContentful} from "./withContentful";
+import {withArgsMutator} from "./withArgsMutator";
+import {withLivePreview} from "./withLivePreview";
 
 /**
  * Note: if you want to use JSX in this file, rename it to `preview.tsx`
@@ -18,7 +20,9 @@ import {withContentfulPreview} from "./withContentfulPreview";
  */
 
 const preview: ProjectAnnotations<Renderer> = {
-  decorators: [withContentfulPreview],
+
+  // seems they are executed in reverse order
+  decorators: [withArgsMutator, withLivePreview, withContentful],
   globals: {
     [PARAM_KEY]: {
       // Example of setting a default value for a global parameter
