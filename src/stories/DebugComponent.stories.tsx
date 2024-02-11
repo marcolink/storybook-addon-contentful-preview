@@ -1,7 +1,7 @@
 import type {Meta} from '@storybook/react';
 import {StoryObj} from "@storybook/react";
 import {ContentfulDebugComponent} from "./ContentfulDebugComponent";
-import {withArgsMutator} from "../withArgsMutator";
+import {withEntryArgMutator} from "../withEntryArgMutator";
 
 const meta = {
   title: 'ContentfulPreview/Debug',
@@ -14,7 +14,7 @@ type Story = StoryObj<typeof ContentfulDebugComponent>;
  * render static data (if parameter `contentfulPreview` is not set),
  */
 export const Static: Story = {
-  decorators: [withArgsMutator],
+  decorators: [withEntryArgMutator],
   args: {
     contentful_entry: {
       sys: {

@@ -14,24 +14,24 @@ export function defaultArgsMutator(entry: BaseEntry, args: Args): Args {
 /*
   * This decorator is used to pass the entry fields to the story args
  */
-export const withArgsMutator = makeDecorator({
-  name: 'withArgsMutator',
+export const withEntryArgMutator = makeDecorator({
+  name: 'withEntryArgMutator',
   parameterName: PARAM_KEY,
   skipIfNoParametersOrOptions: false,
   wrapper: (
     storyFn,
     context,
     {parameters = {}}: {
-      parameters: Partial<Pick<ContentfulPreviewParameters, 'argsMutator' | 'debugMode'>>
+      parameters: Partial<Pick<ContentfulPreviewParameters, 'entryMutator' | 'debugMode'>>
     }
   ) => {
     const globalContentfulPreview = context.parameters.globals[PARAM_KEY];
     const debugMode = mergeParam([parameters.debugMode, globalContentfulPreview?.debugMode], false)
     if(debugMode) {
-      console.log('🎨 Decorated with withArgsMutator')
+      console.log('🎨 Decorated with withEntryArgMutator')
     }
     if (isContentfulObject(context.args[PARAM_ENTRY])) {
-      const argsMutator = parameters?.argsMutator || defaultArgsMutator
+      const argsMutator = parameters?.entryMutator || defaultArgsMutator
       context.args = argsMutator(context.args[PARAM_ENTRY], context.args)
     }
     return storyFn(context);

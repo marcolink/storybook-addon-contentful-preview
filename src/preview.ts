@@ -11,7 +11,7 @@
 import type {ProjectAnnotations, Renderer} from "@storybook/types";
 import {PARAM_KEY} from "./constants";
 import {withContentful} from "./withContentful";
-import {withArgsMutator} from "./withArgsMutator";
+import {withEntryArgMutator} from "./withEntryArgMutator";
 import {withLivePreview} from "./withLivePreview";
 
 /**
@@ -22,7 +22,7 @@ import {withLivePreview} from "./withLivePreview";
 const preview: ProjectAnnotations<Renderer> = {
 
   // seems they are executed in reverse order
-  decorators: [withArgsMutator, withLivePreview, withContentful],
+  decorators: [withEntryArgMutator, withLivePreview, withContentful],
   globals: {
     [PARAM_KEY]: {
       // Example of setting a default value for a global parameter

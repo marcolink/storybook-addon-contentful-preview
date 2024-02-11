@@ -23,5 +23,5 @@ export type ContentfulPreviewParameters = {
   host: string,
   debugMode: boolean,
   entryId: string,
-  argsMutator: (args: Args) => Args
+  entryMutator: (args: Args) => Args
 }
