@@ -14,9 +14,9 @@ const preview: Preview = {
     },
     globals: {
       contentfulPreview: {
-        space: "621006g5gybw",
-        accessToken: "UaqOlFCYE6lFHd_Cmvp2xD__UBceBcKA4j8KkFoCdac",
-        host: 'preview.contentful.com',
+        space: process.env.STORYBOOK_SPACE_ID,
+        accessToken: process.env.STORYBOOK_PREVIEW_TOKEN,
+        host: process.env.STORYBOOK_HOST,
         // debugMode: true,
       }
     }
