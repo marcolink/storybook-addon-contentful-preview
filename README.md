@@ -126,7 +126,9 @@ export default {
 #### `withEntryArgMutator`
   
 When you want to modify the loaded entry data, you can use the `withEntryArgMutator` decorator. 
-By default, the entry will be populated under `args.contentful_entry`. You can use this decorator to modify the loaded entry data before it is passed to your component.
+The loaded the entry will be provided as `args.contentful_entry`. 
+You can use this decorator to modify the loaded entry data before it is passed to your component to match your component props.
+WHen used as plugin, the default behavour is to populate all `fields` as top-level args to the story.
 
 ```ts
 import {withContentful, withEntryArgMutator} from 'storybook-addon-contentful-preview';
