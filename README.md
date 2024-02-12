@@ -180,59 +180,96 @@ The "Contentful Preview" panel will provide you the matching url for your compon
 - `npm run start` runs babel in watch mode and starts Storybook
 - `npm run build` build and package your addon code
 
-## Release Management
+[//]: # ()
+[//]: # (## Release Management)
 
-### Setup
+[//]: # ()
+[//]: # (### Setup)
 
-This project is configured to use [auto](https://github.com/intuit/auto) for release management. It generates a
-changelog and pushes it to both GitHub and npm. Therefore, you need to configure access to both:
+[//]: # ()
+[//]: # (This project is configured to use [auto]&#40;https://github.com/intuit/auto&#41; for release management. It generates a)
 
-- [`NPM_TOKEN`](https://docs.npmjs.com/creating-and-viewing-access-tokens#creating-access-tokens) Create a token with
-  both _Read and Publish_ permissions.
-- [`GH_TOKEN`](https://github.com/settings/tokens) Create a token with the `repo` scope.
+[//]: # (changelog and pushes it to both GitHub and npm. Therefore, you need to configure access to both:)
 
-Then open your `package.json` and edit the following fields:
+[//]: # ()
+[//]: # (- [`NPM_TOKEN`]&#40;https://docs.npmjs.com/creating-and-viewing-access-tokens#creating-access-tokens&#41; Create a token with)
 
-- `name`
-- `author`
-- `repository`
+[//]: # (  both _Read and Publish_ permissions.)
 
-#### Local
+[//]: # (- [`GH_TOKEN`]&#40;https://github.com/settings/tokens&#41; Create a token with the `repo` scope.)
 
-To use `auto` locally create a `.env` file at the root of your project and add your tokens to it:
+[//]: # ()
+[//]: # (Then open your `package.json` and edit the following fields:)
 
-```bash
-GH_TOKEN=<value you just got from GitHub>
-NPM_TOKEN=<value you just got from npm>
-```
+[//]: # ()
+[//]: # (- `name`)
 
-Lastly, **create labels on GitHub**. You’ll use these labels in the future when making changes to the package.
+[//]: # (- `author`)
 
-```bash
-npx auto create-labels
-```
+[//]: # (- `repository`)
 
-If you check on GitHub, you’ll now see a set of labels that `auto` would like you to use. Use these to tag future pull
-requests.
+[//]: # ()
+[//]: # (#### Local)
 
-#### GitHub Actions
+[//]: # ()
+[//]: # (To use `auto` locally create a `.env` file at the root of your project and add your tokens to it:)
 
-This template comes with GitHub actions already set up to publish your addon anytime someone pushes to your repository.
+[//]: # ()
+[//]: # (```bash)
 
-Go to `Settings > Secrets`, click `New repository secret`, and add your `NPM_TOKEN`.
+[//]: # (GH_TOKEN=<value you just got from GitHub>)
 
-### Creating a release
+[//]: # (NPM_TOKEN=<value you just got from npm>)
 
-To create a release locally you can run the following command, otherwise the GitHub action will make the release for
-you.
+[//]: # (```)
 
-```sh
-npm run release
-```
+[//]: # ()
+[//]: # (Lastly, **create labels on GitHub**. You’ll use these labels in the future when making changes to the package.)
 
-That will:
+[//]: # ()
+[//]: # (```bash)
 
-- Build and package the addon code
-- Bump the version
-- Push a release to GitHub and npm
-- Push a changelog to GitHub
+[//]: # (npx auto create-labels)
+
+[//]: # (```)
+
+[//]: # ()
+[//]: # (If you check on GitHub, you’ll now see a set of labels that `auto` would like you to use. Use these to tag future pull)
+
+[//]: # (requests.)
+
+[//]: # ()
+[//]: # (#### GitHub Actions)
+
+[//]: # ()
+[//]: # (This template comes with GitHub actions already set up to publish your addon anytime someone pushes to your repository.)
+
+[//]: # ()
+[//]: # (Go to `Settings > Secrets`, click `New repository secret`, and add your `NPM_TOKEN`.)
+
+[//]: # ()
+[//]: # (### Creating a release)
+
+[//]: # ()
+[//]: # (To create a release locally you can run the following command, otherwise the GitHub action will make the release for)
+
+[//]: # (you.)
+
+[//]: # ()
+[//]: # (```sh)
+
+[//]: # (npm run release)
+
+[//]: # (```)
+
+[//]: # ()
+[//]: # (That will:)
+
+[//]: # ()
+[//]: # (- Build and package the addon code)
+
+[//]: # (- Bump the version)
+
+[//]: # (- Push a release to GitHub and npm)
+
+[//]: # (- Push a changelog to GitHub)
