@@ -153,7 +153,20 @@ export default {
 };
 ```
 
+### Contentful Preview
+To preview your components inside the contentful app, it's best to use the **fullscreen** mode of storybook. 
 
+- Open the storybook in your browser
+- Open fullscreen mode
+- Copy URL
+- Open contentful
+- Got to settings for "Contentful Preview"
+- Paste URL into (add parameters)
+
+
+![contentful-preview-panel.png](images%2Fcontentful-preview-panel.png)
+
+The "Contentful Preview" panel will provide you the matching url for your components including all dynamic parameters.
 
 ## Development
 
