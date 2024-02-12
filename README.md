@@ -46,7 +46,7 @@ This addon contributes the following parameters to Storybook, under the `content
 | `argsMutator` | `function` | Mutator for the loaded entry data. By default, all fields will be populated as top-level args to the story | No       |
 
 #### Define Parameters
-You can set the parameters globally, by adding the `contentfulPreview` parameter to the `globals` object of your `.storybook/preview.js` file.
+You can set the parameters globally, by adding the `contentfulPreview` parameter to the `globals` object of your `.storybook/preview.js` file ([example](./.storybook/preview.ts)). 
 
 ```ts
 import type {Preview} from "@storybook/react";
@@ -66,7 +66,7 @@ const preview: Preview = {
 export default preview;
 ```
 
-You can also set the parameters per story, by adding the `contentfulPreview` parameter to the story.
+You can also set the parameters per story, by adding the `contentfulPreview` parameter to the story ([example](./src/stories/DebugComponent.stories.tsx))
 
 ```ts
 export default {
@@ -79,6 +79,7 @@ export default {
 }
 ```
 > The parameters set on the [story level will override the global](https://storybook.js.org/docs/writing-stories/parameters#rules-of-parameter-inheritance) parameters.
+
 
 ### Decorators
 
