@@ -3,6 +3,8 @@
 Preview your components with contentful data. Connect your storybook to contentful and [live preview](https://www.contentful.com/developers/docs/tutorials/general/live-preview/) your components with real
 data.
 
+![screen-recording.gif](images%2Fscreen-recording.gif)
+
 ## Installation
 
 First, install the package.
