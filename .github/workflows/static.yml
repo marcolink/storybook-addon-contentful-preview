@@ -39,8 +39,11 @@ jobs:
 
       - name: Install dependencies
         run: npm ci
+
+      - name: Build Addon
+        run: npm run build
         
-      - name: Build storybook
+      - name: Build Storybook
         run: npm run build-storybook
       
       - name: Setup Pages
