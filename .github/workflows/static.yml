@@ -47,6 +47,7 @@ jobs:
         env:
           STORYBOOK_SPACE_ID: ${{ secrets.STORYBOOK_SPACE_ID }}
           STORYBOOK_PREVIEW_TOKEN: ${{ secrets.STORYBOOK_PREVIEW_TOKEN }}
+          STORYBOOK_HOST: ${{ secrets.STORYBOOK_HOST }}
         run: npm run build-storybook
       
       - name: Setup Pages
