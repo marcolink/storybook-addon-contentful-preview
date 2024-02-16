@@ -3,6 +3,12 @@
 Preview your components with contentful data. Connect your storybook to contentful and [live preview](https://www.contentful.com/developers/docs/tutorials/general/live-preview/) your components with real
 data.
 
+[![Version](https://img.shields.io/npm/v/storybook-addon-contentful-preview.svg)](https://npmjs.org/package/storybook-addon-contentful-preview)
+[![Downloads/week](https://img.shields.io/npm/dw/storybook-addon-contentful-preview.svg)](https://npmjs.org/package/storybook-addon-contentful-preview)
+[![Size](https://img.shields.io/bundlephobia/min/storybook-addon-contentful-preview.svg)](https://npmjs.org/package/storybook-addon-contentful-preview)
+[![Release](https://github.com/marcolink/storybook-addon-contentful-preview/actions/workflows/release.yml/badge.svg)](https://github.com/marcolink/storybook-addon-contentful-preview/actions/workflows/release.yml)
+[![License](https://img.shields.io/npm/l/storybook-addon-contentful-preview.svg)](https://github.com/marcoxlink/storybook-addon-contentful-preview/blob/main/package.json)
+
 ![screen-recording.gif](images%2Fscreen-recording.gif)
 
 ## Installation
