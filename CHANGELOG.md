@@ -1,3 +1,15 @@
+# v0.0.18 (Fri Feb 16 2024)
+
+#### ⚠️ Pushed to `main`
+
+- chore: add badges ([@marcolink](https://github.com/marcolink))
+
+#### Authors: 1
+
+- Marco Link ([@marcolink](https://github.com/marcolink))
+
+---
+
 # v0.0.17 (Thu Feb 15 2024)
 
 #### ⚠️ Pushed to `main`
