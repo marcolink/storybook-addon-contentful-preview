@@ -1,5 +1,5 @@
 // make it work with --isolatedModules
-export default {};
+// export default {};
 
 export {withLivePreview} from './withLivePreview'
 export {withContentful} from './withContentful'
