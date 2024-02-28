@@ -1,3 +1,15 @@
+# v0.0.19 (Wed Feb 28 2024)
+
+#### 🐛 Bug Fix
+
+- fix: exporting modules [#1](https://github.com/marcolink/storybook-addon-contentful-preview/pull/1) ([@marcolink](https://github.com/marcolink))
+
+#### Authors: 1
+
+- Marco Link ([@marcolink](https://github.com/marcolink))
+
+---
+
 # v0.0.18 (Fri Feb 16 2024)
 
 #### ⚠️ Pushed to `main`
