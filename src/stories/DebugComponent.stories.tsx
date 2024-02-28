@@ -1,6 +1,6 @@
 import type {Meta} from '@storybook/react';
 import {StoryObj} from "@storybook/react";
-import {ContentfulDebugComponent} from "./ContentfulDebugComponent";
+import {ContentfulDebugComponent} from "../components/ContentfulDebugComponent";
 import {withEntryArgMutator} from "../withEntryArgMutator";
 
 const meta = {
