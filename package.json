@@ -1,6 +1,6 @@
 {
   "name": "storybook-addon-contentful-preview",
-  "version": "0.0.20",
+  "version": "0.0.21",
   "description": "Preview your components with contentful data",
   "keywords": [
     "",
