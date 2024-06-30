@@ -1,3 +1,27 @@
+# v0.0.20 (Sun Jun 30 2024)
+
+#### 🐛 Bug Fix
+
+- chore: add dependabot auto-merge [#12](https://github.com/marcolink/storybook-addon-contentful-preview/pull/12) ([@marcolink](https://github.com/marcolink))
+
+#### ⚠️ Pushed to `main`
+
+- chore: create dependabot.yml ([@marcolink](https://github.com/marcolink))
+
+#### 🔩 Dependency Updates
+
+- chore(deps-dev): bump vite from 5.1.1 to 5.1.7 [#6](https://github.com/marcolink/storybook-addon-contentful-preview/pull/6) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+- chore(deps-dev): bump express from 4.18.2 to 4.19.2 [#5](https://github.com/marcolink/storybook-addon-contentful-preview/pull/5) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+- chore(deps-dev): bump ws from 6.2.2 to 6.2.3 [#3](https://github.com/marcolink/storybook-addon-contentful-preview/pull/3) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+- chore(deps-dev): bump ejs from 3.1.9 to 3.1.10 [#2](https://github.com/marcolink/storybook-addon-contentful-preview/pull/2) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+
+#### Authors: 2
+
+- [@dependabot[bot]](https://github.com/dependabot[bot])
+- Marco Link ([@marcolink](https://github.com/marcolink))
+
+---
+
 # v0.0.19 (Wed Feb 28 2024)
 
 #### 🐛 Bug Fix
