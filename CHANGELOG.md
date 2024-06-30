@@ -1,3 +1,20 @@
+# v0.0.21 (Sun Jun 30 2024)
+
+#### ⚠️ Pushed to `main`
+
+- chore: Update dependabot-auto-merge.yml ([@marcolink](https://github.com/marcolink))
+
+#### 🔩 Dependency Updates
+
+- chore(deps): bump follow-redirects from 1.15.5 to 1.15.6 [#4](https://github.com/marcolink/storybook-addon-contentful-preview/pull/4) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+
+#### Authors: 2
+
+- [@dependabot[bot]](https://github.com/dependabot[bot])
+- Marco Link ([@marcolink](https://github.com/marcolink))
+
+---
+
 # v0.0.20 (Sun Jun 30 2024)
 
 #### 🐛 Bug Fix
